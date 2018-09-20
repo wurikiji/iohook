@@ -1075,7 +1075,7 @@ static void init_grab() {
 }
 
 UIOHOOK_API void grab_keyboad(bool enable) {
-	grab_keyboad = enable;
+	grab_keyboard_event = enable;
 }
 
 static void enable_grab_mouse() {
