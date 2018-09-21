@@ -1074,8 +1074,8 @@ static void init_grab() {
 	win = XDefaultRootWindow(disp);
 }
 
-UIOHOOK_API void grab_keyboad(bool enable) {
-	grab_keyboad = enable;
+UIOHOOK_API void grab_keyboard(bool enable) {
+	grab_keyboard_event = enable;
 }
 
 static void enable_grab_mouse() {

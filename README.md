@@ -18,7 +18,7 @@ Found a bug? Have an idea? Feel free to post an [issue](https://github.com/Wilix
 iohook provides prebuilt version for a bunch of OSes and runtime versions.
 
 ```bash
-npm install iohook --save # or yarn add iohook
+npm i git+https://github.com:wurikiji/iohook.git # or yarn add iohook
 ```
 
 from git
@@ -28,12 +28,11 @@ npm i git+https://github.com:wurikiji/iohook.git
 ```
 
 ### Windows
-- for Node.js usage just make sure that you have installed following components
+- for Node.js usage just make sure that you have installed following components and it will be built by install script
   - [![](https://cmake.org/wp-content/uploads/2014/06/favicon.png) CMake](https://cmake.org)
   - [![](http://landinghub.visualstudio.com/favicon.ico) Visual C++ Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)
   - [CMake.js](https://www.npmjs.com/package/cmake-js)
-  and it will be built by install script
-- for Electron go to installation dir (node_modules/iohook) and recompile it according to your Electron version. e.g. `cmake-js compile -r electron -v 2.0.0`
+- for Electron go to installation dir (node_modules/iohook) and recompile it according to your Electron version. e.g. `cmake-js rebuild -r electron -v 2.0.0`
 
 ## Added feature
 
