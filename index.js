@@ -53,6 +53,7 @@ class IOHook extends EventEmitter {
   stop() {
     this.enableClickPropagation();
     this.enableKeyboardPropagation();
+    this.enableMovePropagation();
     if (this.active) {
       this.active = false;
     }
@@ -145,6 +146,16 @@ class IOHook extends EventEmitter {
     NodeHookAddon.grabMouseClick(false);
   }
 
+  /**
+   * disable/enable mouse move propagation.
+   */
+
+  disableMovePropagation() {
+    NodeHookAddon.grabMouseMove(true);
+  }
+  enableMovePropagation() {
+    NodeHookAddon.grabMouseMove(false);
+  }
   /**
    * Local event handler. Don't use it in your code!
    * @param msg Raw event message

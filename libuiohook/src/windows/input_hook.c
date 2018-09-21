@@ -51,6 +51,7 @@ static uiohook_event event;
 static dispatcher_t dispatcher = NULL;
 
 static unsigned short int grab_mouse_click_event = 0x00;
+static unsigned short int grab_mouse_move_event = 0x00;
 static unsigned short int grab_keyboard_event = 0x00;
 
 UIOHOOK_API void hook_set_dispatch_proc(dispatcher_t dispatch_proc) {
@@ -440,7 +441,7 @@ static void process_mouse_moved(MSLLHOOKSTRUCT *mshook) {
 
 		// Populate mouse move event.
 		event.time = timestamp;
-		event.reserved = 0x00;
+		event.reserved = grab_mouse_move_event;
 
 		event.mask = get_modifiers();
 
@@ -672,6 +673,9 @@ void CALLBACK win_hook_event_proc(HWINEVENTHOOK hook, DWORD event, HWND hWnd, LO
 
 UIOHOOK_API void grab_keyboard(bool enabled) {
 	grab_keyboard_event = enabled;
+}
+UIOHOOK_API void grab_mouse_move(bool enabled) {
+	grab_mouse_move_event = enabled;
 }
 UIOHOOK_API void grab_mouse_click(bool enabled) {
 	if (enabled) {

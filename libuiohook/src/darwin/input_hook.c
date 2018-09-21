@@ -102,6 +102,7 @@ static dispatcher_t dispatcher = NULL;
 
 static unsigned short int grab_keyboard_event = 0x00;
 static unsigned short int grab_mouse_click_event = 0x00;
+static unsigned short int grab_mouse_move_event = 0x00;
 
 UIOHOOK_API void hook_set_dispatch_proc(dispatcher_t dispatch_proc) {
 	logger(LOG_LEVEL_DEBUG,	"%s [%u]: Setting new dispatch callback to %#p.\n",
@@ -877,7 +878,7 @@ static inline void process_mouse_moved(uint64_t timestamp, CGEventRef event_ref)
 
 	// Populate mouse motion event.
 	event.time = timestamp;
-	event.reserved = 0x00;
+	event.reserved = grab_mouse_move_event;
 
 	if (mouse_dragged) {
 		event.type = EVENT_MOUSE_DRAGGED;
@@ -1071,9 +1072,18 @@ CGEventRef hook_event_proc(CGEventTapProxy tap_proxy, CGEventType type, CGEventR
 		case kCGEventMouseMoved:
 			// Set the mouse dragged flag.
 			mouse_dragged = false;
+			// CGDisplayHideCursor(kCGDirectMainDisplay);;
+			// CGDisplayShowCursor(kCGDirectMainDisplay);;
 			process_mouse_moved(timestamp, event_ref);
+			if (event.reserved) {
+				int32_t deltaX, deltaY;
+				CGGetLastMouseDelta(&deltaX, &deltaY);
+				CGPoint originalPoint;
+				originalPoint.x = event.data.mouse.x - deltaX;
+				originalPoint.y = event.data.mouse.y - deltaY;
+				CGWarpMouseCursorPosition(originalPoint);
+			}
 			break;
-
 
 		case kCGEventScrollWheel:
 			process_mouse_wheel(timestamp, event_ref);
@@ -1126,6 +1136,14 @@ UIOHOOK_API void grab_mouse_click(bool enabled) {
 	}
 }
 
+UIOHOOK_API void grab_mouse_move(bool enabled) {
+	grab_mouse_move_event = enabled;
+	CGDirectDisplayID displays[2];
+	uint32_t dcnt;
+	CGGetActiveDisplayList(2, displays, &dcnt);
+	logger(LOG_LEVEL_DEBUG,	"%s [%u]: get displays. (%d) (%d)\n",
+			__FUNCTION__, __LINE__, dcnt, dcnt);
+}
 UIOHOOK_API void grab_keyboard(bool enabled){
 	grab_keyboard_event = enabled;
 }

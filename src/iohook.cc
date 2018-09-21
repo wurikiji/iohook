@@ -516,6 +516,11 @@ NAN_METHOD(GrabMouseClick) {
     grab_mouse_click(info[0]->IsTrue());
   }
 }
+NAN_METHOD(GrabMouseMove) {
+  if (info.Length() > 0) {
+    grab_mouse_move(info[0]->IsTrue());
+  }
+}
 
 NAN_METHOD(DebugEnable) {
   if (info.Length() > 0)
@@ -570,6 +575,8 @@ NAN_MODULE_INIT(Init) {
   Nan::GetFunction(Nan::New<FunctionTemplate>(GrabKeyboard)).ToLocalChecked());
   Nan::Set(target, Nan::New<String>("grabMouseClick").ToLocalChecked(),
   Nan::GetFunction(Nan::New<FunctionTemplate>(GrabMouseClick)).ToLocalChecked());
+  Nan::Set(target, Nan::New<String>("grabMouseMove").ToLocalChecked(),
+  Nan::GetFunction(Nan::New<FunctionTemplate>(GrabMouseMove)).ToLocalChecked());
 }
 
 NODE_MODULE(nodeHook, Init)

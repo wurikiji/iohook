@@ -57,6 +57,9 @@ declare class IOHook extends EventEmitter {
    */
   disableClickPropagation(): void
 
+  enableMovePropagation(): void
+  disableMovePropagation(): void
+
   /**
    * Register global shortcut. When all keys in keys array pressed, callback will be called
    * @param {Array<string|number>} keys Array of keycodes
