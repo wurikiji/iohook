@@ -40,6 +40,13 @@ You can enable keyboard event propagation. Keyboard events are propagated by def
 
 You can disable keyboard event propagtion. Keyboard events are captured and emitted but not propagated to the apps.
 
+### iohook.enableMovePropagation()
+
+### iohook.disableMovePropagation()
+
+You can enable or disable mouse movement propagtions.
+
+
 ## FAQ
 Q. *Does this module require Java ?*
 
