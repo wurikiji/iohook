@@ -1,0 +1,3 @@
+[submodule "os-keycode"]
+	path = os-keycode
+	url = https://github.com/wurikiji/os-keycode

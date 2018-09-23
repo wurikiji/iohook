@@ -1,6 +1,6 @@
 const iohook = require('../index.js');
-const keyname = require('/Users/wurikiji/work/git/os-keycode').keyname;
-const keycode = require('/Users/wurikiji/work/git/os-keycode').keycode;
+const keyname = require('../os-keycode').keyname;
+const keycode = require('../os-keycode').keycode;
 
 
 console.log(keycode('control'));
