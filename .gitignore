@@ -54,3 +54,4 @@ libuiohook/src/x11/.deps/
 libuiohook/test/.deps/
 
 package-lock.json
+os-keycode/
