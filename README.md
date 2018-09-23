@@ -17,10 +17,6 @@ Found a bug? Have an idea? Feel free to post an [issue](https://github.com/Wilix
 ## Installation
 iohook provides prebuilt version for a bunch of OSes and runtime versions.
 
-```bash
-npm i git+https://github.com:wurikiji/iohook.git # or yarn add iohook
-```
-
 from git
 
 ```bash

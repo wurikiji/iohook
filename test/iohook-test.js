@@ -1,7 +1,12 @@
-const iohook = require('../iohook/index.js');
+const iohook = require('../index.js');
+const keyname = require('/Users/wurikiji/work/git/os-keycode').keyname;
+const keycode = require('/Users/wurikiji/work/git/os-keycode').keycode;
 
+
+console.log(keycode('control'));
 iohook.on('keydown', event => {
   console.log(event);
+  console.log(keyname(event.rawcode));
 });
 
 iohook.on('mousemove', event => {
@@ -9,15 +14,14 @@ iohook.on('mousemove', event => {
 });
 
 console.log('start');
-iohook.disableKeyboardPropagation();
-iohook.disableMovePropagation();
-iohook.disableClickPropagation();
-iohook.start(true);
+// iohook.disableMovePropagation();
+// iohook.disableClickPropagation();
+iohook.start();
 
 setTimeout(() => {
-  iohook.enableKeyboardPropagation();
-  iohook.enableMovePropagation();
-  iohook.enableClickPropagation();
+  //iohook.enableKeyboardPropagation();
+  //iohook.enableMovePropagation();
+  //iohook.enableClickPropagation();
   iohook.stop();
   console.log('end');
-}, 3000)
+}, 100000)

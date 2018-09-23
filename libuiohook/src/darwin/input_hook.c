@@ -596,15 +596,19 @@ static inline void process_modifier_changed(uint64_t timestamp, CGEventRef event
 			process_key_released(timestamp, event_ref);
 		}
 	}
-	/* FIXME This should produce a modifier mask for the caps lock key!
+	/* FIXME This should produce a modifier mask for the caps lock key! */
 	else if (keycode == kVK_CapsLock) {
 		// Process as a key pressed event.
+		if ((get_modifiers() & MASK_CAPS_LOCK)) {
+			unset_modifier_mask(MASK_CAPS_LOCK);
+		} else {
+			set_modifier_mask(MASK_CAPS_LOCK);
+		}
 		process_key_pressed(timestamp, event_ref);
-		
+		process_key_released(timestamp, event_ref);
 		// Set the caps-lock flag for release.
-		caps_down = true;
-	}
-	*/
+		// caps_down = true;
+	} 
 }
 
 /* These events are totally undocumented for the CGEvent type, but are required to grab media and caps-lock keys.

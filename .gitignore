@@ -52,3 +52,5 @@ libuiohook/src/darwin/.deps/
 libuiohook/src/windows/.deps/
 libuiohook/src/x11/.deps/
 libuiohook/test/.deps/
+
+package-lock.json
